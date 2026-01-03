@@ -31,12 +31,12 @@ REPO_URL="https://raw.githubusercontent.com/AbdullahZeynel/gazisiber-fetch/main"
 curl -sL "$REPO_URL/config.jsonc" -o "$CONFIG_DIR/gazisiber_config.jsonc"
 
 # Logo dosyasını indir
-curl -sL "$REPO_URL/logo_ascii.txt" -o "$CONFIG_DIR/logo_ascii.txt"
+curl -sL "$REPO_URL/logo.txt" -o "$CONFIG_DIR/logo.txt"
 
 # 4. Config Dosyasındaki Logo Yolunu Düzelt
 # İndirilen config dosyasındaki "~" işaretini kullanıcının tam ev dizini yoluyla değiştiriyoruz.
 # Bu adım, dosya yolunun kesinlikle doğru çalışmasını sağlar.
-sed -i "s|~/.config/fastfetch/logo_ascii.txt|$HOME/.config/fastfetch/logo_ascii.txt|g" "$CONFIG_DIR/gazisiber_config.jsonc"
+sed -i "s|~/.config/fastfetch/logo.txt|$HOME/.config/fastfetch/logo.txt|g" "$CONFIG_DIR/gazisiber_config.jsonc"
 
 echo "✅ Dosyalar $CONFIG_DIR konumuna yerleştirildi."
 
