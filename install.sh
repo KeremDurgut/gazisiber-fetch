@@ -30,23 +30,27 @@ REPO_URL="https://raw.githubusercontent.com/AbdullahZeynel/gazisiber-fetch/main"
 # Config dosyasını indir
 curl -sL "$REPO_URL/config.jsonc" -o "$CONFIG_DIR/gazisiber_config.jsonc"
 
-# Logo dosyasını indir
-curl -sL "$REPO_URL/logo.txt" -o "$CONFIG_DIR/logo.txt"
+# Smaller logo dosyasını indir
+curl -sL "$REPO_URL/logo_small.txt" -o "$CONFIG_DIR/logo_small.txt"
+
+# Smart wrapper script'i indir
+curl -sL "$REPO_URL/fetch.sh" -o "$CONFIG_DIR/fetch.sh"
+chmod +x "$CONFIG_DIR/fetch.sh"
 
 # 4. Config Dosyasındaki Logo Yolunu Düzelt
 # İndirilen config dosyasındaki "~" işaretini kullanıcının tam ev dizini yoluyla değiştiriyoruz.
 # Bu adım, dosya yolunun kesinlikle doğru çalışmasını sağlar.
-sed -i "s|~/.config/fastfetch/logo.txt|$HOME/.config/fastfetch/logo.txt|g" "$CONFIG_DIR/gazisiber_config.jsonc"
+sed -i "s|~/.config/fastfetch/logo_small.txt|$HOME/.config/fastfetch/logo_small.txt|g" "$CONFIG_DIR/gazisiber_config.jsonc"
 
 echo "✅ Dosyalar $CONFIG_DIR konumuna yerleştirildi."
 
 # 5. Global Komut Oluştur (gazisiber-fetch)
 echo "🚀 'gazisiber-fetch' komutu oluşturuluyor (Sudo şifresi gerekebilir)..."
 
-# /usr/local/bin içine bir script yazıyoruz
+# /usr/local/bin içine bir script yazıyoruz - artık akıllı wrapper'ı kullanıyor
 sudo bash -c "cat > /usr/local/bin/gazisiber-fetch" <<EOF
 #!/bin/bash
-fastfetch --config $HOME/.config/fastfetch/gazisiber_config.jsonc
+$HOME/.config/fastfetch/fetch.sh
 EOF
 
 # Çalıştırma izni ver
