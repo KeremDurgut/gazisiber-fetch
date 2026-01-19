@@ -25,7 +25,7 @@ mkdir -p "$CONFIG_DIR"
 echo "⚙️  Yapılandırma dosyaları indiriliyor..."
 
 # 3. Dosyaları GitHub'dan Çek (Kendi kullanıcı adını buraya yazmayı unutma!)
-REPO_URL="https://raw.githubusercontent.com/AbdullahZeynel/gazisiber-fetch/main"
+REPO_URL="https://raw.githubusercontent.com/KeremDurgut/gazisiber-fetch/main"
 
 # Config dosyasını indir
 curl -sL "$REPO_URL/config.jsonc" -o "$CONFIG_DIR/gazisiber_config.jsonc"
